@@ -7,7 +7,7 @@ export default function MessageBar({ scrollToBottom }) {
 
     const handelSendMessage = async (e) => {
         e.preventDefault();
-        if (messageInputRef.current.value != '') {
+        if (messageInputRef.current.value !== '') {
             try {
                 await sendMessage(messageInputRef.current.value)
                 scrollToBottom()

@@ -2,13 +2,14 @@ import React, { useRef, useState } from 'react'
 import { useAuthContext } from '../../Context/AuthContext';
 
 // react router
-import { useNavigate , Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 export default function LogIn() {
     let navigate = useNavigate();
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const [error, setError] = useState('');
-    
+    const [rememberMe, setRememberMe] = useState(true);
+
     const { login } = useAuthContext();
     const handelSubmit = async (e) => {
         e.preventDefault();
@@ -40,6 +41,12 @@ export default function LogIn() {
                         {error && <div className="alert alert-danger w-100 mt-3" role="alert">
                             {error}
                         </div>}
+                        <div className="mt-2">
+                            <input className="form-check-input" type="checkbox" id="remember-me" value={rememberMe} onChange={() => { setRememberMe(!rememberMe) }} />
+                            <label className="form-check-label ms-2" htmlFor="flexCheckChecked">
+                                Remember me
+                            </label>
+                        </div>
                         <p className='mt-2'>don't have an account yet? <Link to='/signup'>Sign Up</Link></p>
                     </form>
                 </div>

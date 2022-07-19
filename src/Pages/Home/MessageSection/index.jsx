@@ -11,7 +11,7 @@ export default function MessageSection({ bottomDivRef }) {
     return (
         <div className='container mt-3 mb-3 message-section'>
             {messages.map(el => {
-                return <Message value={el.message} sender={el.uesr} />
+                return <Message value={el.message} sender={el.uesr} senderName={el.userName}/>
             })}
             <div ref={bottomDivRef} style={{height:'1px'}}></div>
         </div>

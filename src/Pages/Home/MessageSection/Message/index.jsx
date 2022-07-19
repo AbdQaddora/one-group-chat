@@ -14,7 +14,7 @@ export default function Message({ value, sender, senderName }) {
                     maxWidth: "80%"
                 }}>
                 {sender !== user.uid && <p>{senderName}</p>}
-                <span className={`${sender !== user.uid && 'bg-light'} p-2 rounded`} dir={direction(value)}>
+                <span className={`${sender !== user.uid && 'bg-light'} p-2 rounded`}>
                     {value}
                 </span>
             </p>

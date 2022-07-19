@@ -10,7 +10,8 @@ export default function MessageBar({ scrollToBottom }) {
         if (messageInputRef.current.value !== '') {
             try {
                 await sendMessage(messageInputRef.current.value)
-                scrollToBottom()
+                scrollToBottom();
+                messageInputRef.current.focus();   
             } catch (error) {
                 console.log(error);
             }

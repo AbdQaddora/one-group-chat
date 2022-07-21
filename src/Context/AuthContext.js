@@ -11,7 +11,7 @@ export const useAuthContext = () => {
 }
 
 export default function AuthContextProvider({ children }) {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(localStorage.getItem('ONE_GROUP_CHAT_USER') ? localStorage.getItem('ONE_GROUP_CHAT_USER') : null);
 
     const signUp = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -22,6 +22,8 @@ export default function AuthContextProvider({ children }) {
     }
 
     const logout = () => {
+        localStorage.removeItem('ONE_GROUP_CHAT_USER');
+
         return signOut(auth);
     }
 
@@ -31,12 +33,18 @@ export default function AuthContextProvider({ children }) {
         })
     }, [])
 
+
+    const stayLogIn = () => {
+        localStorage.setItem('ONE_GROUP_CHAT_USER', JSON.stringify(user));
+    }
+
     return (
         <AuthContext.Provider value={{
-            user: user,
-            signUp: signUp,
-            login: login,
-            logout: logout
+            user,
+            signUp,
+            login,
+            logout,
+            stayLogIn
         }}>
             {children}
         </AuthContext.Provider>

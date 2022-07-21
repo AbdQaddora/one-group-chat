@@ -1,0 +1,19 @@
+.error-input {
+    border: 1px solid rgb(196, 31, 31);
+}
+
+.modal-overlay {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.show-modal {
+    display: flex;
+}

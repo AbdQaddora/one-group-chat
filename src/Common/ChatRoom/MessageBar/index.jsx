@@ -1,9 +1,7 @@
 import React, { useRef } from 'react'
 import { IoIosSend } from 'react-icons/io'
-import { useFireStoreContext } from '../../../Context/FireStoreContext'
-export default function MessageBar({ scrollToBottom }) {
+export default function MessageBar({ scrollToBottom  , sendMessage}) {
     const messageInputRef = useRef(null);
-    const { sendMessage } = useFireStoreContext();
 
     const handelSendMessage = async (e) => {
         e.preventDefault();

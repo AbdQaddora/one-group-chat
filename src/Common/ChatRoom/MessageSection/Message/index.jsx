@@ -14,7 +14,8 @@ export default function Message({ value, sender, senderName }) {
                 }}>
                 {sender !== user.uid && <p>{senderName}</p>}
                 <p className={`${sender !== user.uid ? 'bg-light p-2' : ' p-1 pb-0 mb-2'} rounded`}
-                    dir={direction(value.toString())}>
+                    dir={direction(value ? value.toString() : '')}
+                >
                     {value}
                 </p>
             </div>

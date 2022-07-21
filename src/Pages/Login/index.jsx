@@ -7,15 +7,19 @@ export default function LogIn() {
     let navigate = useNavigate();
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
+    const rememberMeRef = useRef(null);
     const [error, setError] = useState('');
-    const [rememberMe, setRememberMe] = useState(true);
 
-    const { login } = useAuthContext();
+    const { login, stayLogIn, logout } = useAuthContext();
     const handelSubmit = async (e) => {
+        logout();
         e.preventDefault();
         setError('');
         try {
             await login(emailRef.current.value, passwordRef.current.value);
+            if (rememberMeRef.current.value) {
+                stayLogIn()
+            }
             navigate("/");
         } catch (error) {
             const errorMsg = error.code.replaceAll("auth/", "").replaceAll("-", " ")
@@ -42,7 +46,7 @@ export default function LogIn() {
                             {error}
                         </div>}
                         <div className="mt-2">
-                            <input className="form-check-input" type="checkbox" id="remember-me" value={rememberMe} onChange={() => { setRememberMe(!rememberMe) }} />
+                            <input className="form-check-input" type="checkbox" id="remember-me" ref={rememberMeRef} />
                             <label className="form-check-label ms-2" htmlFor="flexCheckChecked">
                                 Remember me
                             </label>

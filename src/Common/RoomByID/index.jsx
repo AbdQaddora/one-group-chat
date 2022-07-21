@@ -8,7 +8,7 @@ export default function RoomByID() {
     const { roomId } = useParams();
     useEffect(() => {
         setRoomId(roomId)
-    }, [roomId]);
+    }, [roomId , setRoomId]);
 
     return (
         <>

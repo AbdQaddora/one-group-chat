@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import ChatRoom from '../../Common/ChatRoom';
 import { useFireStoreContext } from '../../Context/FireStoreContext'
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function NewRoom() {
     const { createNewRoom, roomId, RoomByIdObject, sendMessageToRoomById } = useFireStoreContext();
@@ -9,7 +9,7 @@ export default function NewRoom() {
     const isFirstTime = useRef(true);
     useEffect(() => {
         createNewRoom();
-    }, []);
+    }, [createNewRoom]);
 
     useEffect(() => {
         if (!isFirstTime.current) {
@@ -18,7 +18,7 @@ export default function NewRoom() {
         } else {
             isFirstTime.current = false
         }
-    }, [roomId])
+    }, [roomId, navigate])
 
     return (
         <>

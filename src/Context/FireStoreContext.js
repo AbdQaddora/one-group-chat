@@ -1,4 +1,4 @@
-import { useContext, createContext, useState, useEffect } from 'react';
+import { useContext, createContext, useState } from 'react';
 import { collection, addDoc, serverTimestamp, orderBy, query, doc, setDoc, updateDoc } from "firebase/firestore";
 import { useCollectionData, useDocumentData } from 'react-firebase-hooks/firestore';
 // db
@@ -21,7 +21,6 @@ export default function FireStoreContextProvider({ children }) {
     const [RoomByIdObject, ,] = useDocumentData(doc(db, 'rooms', roomId));
 
     const createMessageObject = (message) => {
-        const currentTime = serverTimestamp();
         return {
             message: message,
             uesr: user.uid,
@@ -50,7 +49,7 @@ export default function FireStoreContextProvider({ children }) {
     }
 
     const getNewRomID = () => {
-        return  nanoid().slice(0, 8);
+        return nanoid().slice(0, 8);
     }
 
     const createNewRoom = () => {

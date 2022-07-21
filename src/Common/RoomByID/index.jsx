@@ -8,8 +8,8 @@ export default function RoomByID() {
     const { roomId } = useParams();
     useEffect(() => {
         setRoomId(roomId)
-    }, []);
-    
+    }, [roomId]);
+
     return (
         <>
             {RoomByIdObject && <ChatRoom messages={RoomByIdObject.messages} roomId={roomId} sendMessage={sendMessageToRoomById} />}
